@@ -35,7 +35,7 @@ public class Minesweeper extends AbstractMineSweeper {
     }
 
     @java.lang.Override
-    public void startNewGame(Difficulty level) { //TODO implement time elapsed panel
+    public void startNewGame(Difficulty level) {
 
         //Start a new game on the basis of the difficulty
         switch (level){
@@ -186,11 +186,13 @@ public class Minesweeper extends AbstractMineSweeper {
 
     @java.lang.Override
     public void flag(int x, int y) {
-        getTile(x, y).flag();
-        this.viewNotifier.notifyFlagged(x, y);
-        countFlagged++;
-        this.viewNotifier.notifyFlagCountChanged(countFlagged);
-        //System.out.println("Tile (" + x + "," + y + ") flagged.");
+        if(!getTile(x,y).isOpened()){
+            getTile(x, y).flag();
+            this.viewNotifier.notifyFlagged(x, y);
+            countFlagged++;
+            this.viewNotifier.notifyFlagCountChanged(countFlagged);
+            //System.out.println("Tile (" + x + "," + y + ") flagged.");
+        }
     }
 
     @java.lang.Override

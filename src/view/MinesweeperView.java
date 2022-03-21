@@ -32,12 +32,12 @@ public class MinesweeperView implements IGameStateNotifier {
     public static final int MAX_TIME = 1;//in minutes
     public static final int TILE_SIZE = 50;
     public static final class AssetPath {
-        //public static final String CLOCK_ICON = "./assets/icons/clock.png";
-        //public static final String FLAG_ICON = "./assets/icons/flag.png";
-        //public static final String BOMB_ICON = "./assets/icons/bomb.png";
-        public static final String FLAG_ICON = "flag4.png"; //added
-        public static final String BOMB_ICON = "bomb2.png"; //added
-        public static final String CLOCK_ICON = "clock2.png"; //added
+        public static final String CLOCK_ICON = "./assets/icons/clock.png";
+        public static final String FLAG_ICON = "./assets/icons/flag.png";
+        public static final String BOMB_ICON = "./assets/icons/bomb.png";
+        //public static final String FLAG_ICON = "flag4.png"; //added
+        //public static final String BOMB_ICON = "bomb2.png"; //added
+        //public static final String CLOCK_ICON = "clock2.png"; //added
 
     }
     private PlayableMinesweeper gameModel;
@@ -163,7 +163,7 @@ public class MinesweeperView implements IGameStateNotifier {
                     public void mousePressed(MouseEvent arg0) {
                         if (arg0.getButton() == MouseEvent.BUTTON1){
                             //System.out.println("right Click on pos");
-                            if (gameModel!=null) //TODO waarom is gameModel Null?
+                            if (gameModel!=null)
                                 gameModel.open(temp.getPositionX(), temp.getPositionY());
                         } 
                         else if (arg0.getButton() == MouseEvent.BUTTON3) {
@@ -206,7 +206,7 @@ public class MinesweeperView implements IGameStateNotifier {
 
     @Override
     public void notifyTimeElapsedChanged(Duration newTimeElapsed) {
-        String msg =  String.format("%d:%02d", newTimeElapsed.toMinutesPart(), newTimeElapsed.toSecondsPart());
+        String msg =  String.format("%d:%02d", newTimeElapsed.abs().toMinutesPart(), newTimeElapsed.abs().toSecondsPart());
         timerView.setText(msg);
     }
 
