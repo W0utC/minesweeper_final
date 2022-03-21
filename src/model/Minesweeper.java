@@ -1,5 +1,9 @@
 package model;
 import java.util.Random;
+import java.util.Timer;
+import java.time.Duration;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
 
 public class Minesweeper extends AbstractMineSweeper {
 
@@ -12,9 +16,14 @@ public class Minesweeper extends AbstractMineSweeper {
     private int explosionCount; //hoeveelheid bommen er aanwezig moeten zijn
     private int countBombs; //effectief aanwizige bommen
 
+    private LocalDateTime startTime = LocalDateTime.now();
+    private Timer timer = new Timer();
+    private Duration duration;
     public Minesweeper(){
     }
-
+    public LocalDateTime getStartTime(){
+        return startTime;
+    }
     @Override
     public int getWidth() {
         return width;
@@ -27,7 +36,7 @@ public class Minesweeper extends AbstractMineSweeper {
 
     @java.lang.Override
     public void startNewGame(Difficulty level) { //TODO implement time elapsed panel
-                                                //TODO implement count of flagged
+
         //Start a new game on the basis of the difficulty
         switch (level){
             case EASY:
@@ -49,6 +58,9 @@ public class Minesweeper extends AbstractMineSweeper {
         width = col;
         countOpened = 0;
         countBombs = 0;
+        startTime = LocalDateTime.now();
+
+
 
         this.explosionCount = explosionCount;
 
@@ -72,6 +84,8 @@ public class Minesweeper extends AbstractMineSweeper {
         //System.out.println("aantal bommen aanwezig: " + countBombs);
 
         //flagAllBombs();
+        this.duration = Duration.between(LocalTime.now(), startTime);
+        timer.schedule(new myTimerTask(this), 0, 1000);
     }
 
     @java.lang.Override
@@ -279,3 +293,4 @@ public class Minesweeper extends AbstractMineSweeper {
         }
     }
 }
+
