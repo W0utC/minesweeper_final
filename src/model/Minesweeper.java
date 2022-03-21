@@ -1,8 +1,8 @@
 package model;
 import java.util.Random;
 import java.util.Timer;
-import java.time.Duration;
 import java.time.*;
+import java.util.TimerTask;
 
 public class Minesweeper extends AbstractMineSweeper {
 
@@ -17,6 +17,7 @@ public class Minesweeper extends AbstractMineSweeper {
 
     private LocalDateTime startTime = LocalDateTime.now();
     private Timer timer = new Timer();
+    private TimerTask timerTask;
 
     public Minesweeper(){
     }
@@ -80,7 +81,8 @@ public class Minesweeper extends AbstractMineSweeper {
         //flagAllBombs();
 
         startTime = LocalDateTime.now();
-        timer.schedule(new myTimerTask(this), 0, 1000);
+        timerTask = new myTimerTask(this);
+        timer.schedule(timerTask, 0, 1000);
     }
 
     @java.lang.Override
@@ -133,6 +135,10 @@ public class Minesweeper extends AbstractMineSweeper {
 
     @java.lang.Override
     public void open(int x, int y) {
+        if(getTile(x, y).isFlagged()){
+            unflag(x, y);
+        }
+
         if(getTile(x, y).isExplosive()){
             if(countFlagged == 0 && countOpened == 0){
                 firstRule(playingField);
@@ -145,6 +151,8 @@ public class Minesweeper extends AbstractMineSweeper {
             }
             else{
                 this.viewNotifier.notifyExploded(x, y);
+                timerTask.cancel();
+                //timer.purge();
                 this.viewNotifier.notifyGameLost();
                 revealAllBombs();
             }
@@ -252,6 +260,8 @@ public class Minesweeper extends AbstractMineSweeper {
         }
         if(tempCountOpend == tempVal){
             this.viewNotifier.notifyGameWon();
+            timerTask.cancel();
+            //timer.purge();
         }
 
     }
