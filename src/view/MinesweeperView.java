@@ -160,6 +160,9 @@ public class MinesweeperView implements IGameStateNotifier {
                 });
                 this.tiles[i][j] = temp;
                 this.world.add(temp);
+
+
+
             }
         }
         this.world.setLayout(new GridLayout(row, col));
