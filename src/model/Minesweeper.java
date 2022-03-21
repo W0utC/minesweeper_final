@@ -151,12 +151,7 @@ public class Minesweeper extends AbstractMineSweeper {
             }
             else{
                 this.viewNotifier.notifyExploded(x, y);
-<<<<<<< HEAD
                 timerTask.cancel();
-                //timer.purge();
-                this.viewNotifier.notifyGameLost();
-=======
->>>>>>> c3c729a (v4 Maxime)
                 revealAllBombs();
                 this.viewNotifier.notifyGameLost();
             }
@@ -182,10 +177,8 @@ public class Minesweeper extends AbstractMineSweeper {
                     }
                 }
             }
-
-            //System.out.println("Tile (" + x + "," + y + ") opened." + "explosives around: " + getExplosionCountNeighbours(x, y));
         }
-        //System.out.println(countFlagged);
+
         //run checkWon if amount of Flagged equals the amount of bombs
         if(countFlagged == explosionCount){
             checkWon();
@@ -265,7 +258,6 @@ public class Minesweeper extends AbstractMineSweeper {
         if(tempCountOpend == tempVal){
             this.viewNotifier.notifyGameWon();
             timerTask.cancel();
-            //timer.purge();
         }
 
     }
