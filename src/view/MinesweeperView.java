@@ -190,7 +190,7 @@ public class MinesweeperView implements IGameStateNotifier {
         JOptionPane.showMessageDialog(null, "Wohoo you won, well done!!", "Game Won!!", JOptionPane.INFORMATION_MESSAGE);
         pane.setVisible(false);
         pane.setVisible(true);
-        //
+
 
     }
 
