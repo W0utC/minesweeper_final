@@ -4,26 +4,15 @@ import model.Difficulty;
 import model.PlayableMinesweeper;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
 
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 
 import notifier.IGameStateNotifier;
@@ -180,17 +169,31 @@ public class MinesweeperView implements IGameStateNotifier {
         this.world.setVisible(false);
         this.world.setVisible(true);
         this.world.repaint();
+        
     }
     @Override
     public void notifyGameLost() {
         this.removeAllTileEvents();
         //throw new UnsupportedOperationException(); placed in comment
+
+        //Game lost message
+        JOptionPane pane = new JOptionPane();
+        JOptionPane.showMessageDialog(null, "You lost you sucker", "Lost message", JOptionPane.INFORMATION_MESSAGE);
+        pane.setVisible(false);
+        pane.setVisible(true);
     }
     @Override
     public void notifyGameWon() {
         System.out.println("game won");
         this.removeAllTileEvents();
         //throw new UnsupportedOperationException(); placed in comment
+
+        //Game won message
+        JOptionPane pane = new JOptionPane();
+        JOptionPane.showMessageDialog(null, "Wohoo you won, well done!!", "Game Won!!", JOptionPane.INFORMATION_MESSAGE);
+        pane.setVisible(false);
+        pane.setVisible(true);
+
     }
 
     private void removeAllTileEvents() {
