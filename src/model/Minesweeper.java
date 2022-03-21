@@ -1,22 +1,6 @@
 package model;
 import java.util.Random;
 
-//TODO voor ineens verschillende lege vakjes te clearen gebruik:
-//  public void clearBlanks(int i, int j) {
-//        if (i==-1 || i==TILE_COLUMNS || j==-1 || j==TILE_ROWS  || getTileAt(i,j).isRaised()==false)
-//            return;
-//        if (Mines [i][j]!=' ') {
-//            PressTile (getTileAt(i,j), false);
-//            return;
-//        }
-//        PressTile (getTileAt(i,j), false);
-//        for (int p=-1;p<=1;p++) {
-//            for (int q=-1;q<=1;q++) {
-//                clearBlanks (i+p,j+q);
-//            }
-//        }
-//    }
-
 public class Minesweeper extends AbstractMineSweeper {
 
     private int height;
