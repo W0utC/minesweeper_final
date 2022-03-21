@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.time.Duration;
 import java.time.*;
-
+import java.time.temporal.ChronoUnit;
 
 public class Minesweeper extends AbstractMineSweeper {
 
@@ -58,9 +58,6 @@ public class Minesweeper extends AbstractMineSweeper {
         width = col;
         countOpened = 0;
         countBombs = 0;
-        startTime = LocalDateTime.now();
-
-
 
         this.explosionCount = explosionCount;
 
@@ -83,7 +80,9 @@ public class Minesweeper extends AbstractMineSweeper {
         //System.out.print("\n");
         //System.out.println("aantal bommen aanwezig: " + countBombs);
 
-        flagAllBombs();
+        //flagAllBombs();
+
+        startTime = LocalDateTime.now();
         this.duration = Duration.between(LocalTime.now(), startTime);
         timer.schedule(new myTimerTask(this), 0, 1000);
     }
@@ -101,13 +100,13 @@ public class Minesweeper extends AbstractMineSweeper {
 
     @java.lang.Override
     public AbstractTile getTile(int x, int y) {
-        return playingField[y][x]; //TODO hard mode doesn't work, index out of bound. because x and Y changed
+        return playingField[y][x];  //TODO hard mode doesn't work, index out of bound. because x and Y changed
                                     //At this moment the program makes a 30x16 instead of a 16x30
     }
 
     @java.lang.Override
     public void setWorld(AbstractTile[][] world) {
-        Random rand = new Random(); // maak een gigantisch random nummer aan
+        /*Random rand = new Random(); // maak een gigantisch random nummer aan
         countBombs = 0; //effectief aanwizige bommen
 
         //create the playing field
@@ -132,7 +131,8 @@ public class Minesweeper extends AbstractMineSweeper {
                     countBombs++;
                 }
             }
-        }
+        }*/
+        playingField = world;
 
     }
 
@@ -142,6 +142,7 @@ public class Minesweeper extends AbstractMineSweeper {
             if(countFlagged == 0 && countOpened == 0){
                 firstRule(playingField);
                 playingField[y][x] = generateEmptyTile();
+
 
                 getTile(x, y).open();
                 this.viewNotifier.notifyOpened(x, y, getExplosionCountNeighbours(x, y));

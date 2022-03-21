@@ -24,9 +24,6 @@ public class MinesweeperView implements IGameStateNotifier {
         public static final String CLOCK_ICON = "./assets/icons/clock.png";
         public static final String FLAG_ICON = "./assets/icons/flag.png";
         public static final String BOMB_ICON = "./assets/icons/bomb.png";
-        //public static final String FLAG_ICON = "flag4.png"; //added
-        //public static final String BOMB_ICON = "bomb2.png"; //added
-        //public static final String CLOCK_ICON = "clock2.png"; //added
 
     }
     private PlayableMinesweeper gameModel;
