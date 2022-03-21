@@ -151,10 +151,14 @@ public class Minesweeper extends AbstractMineSweeper {
             }
             else{
                 this.viewNotifier.notifyExploded(x, y);
+<<<<<<< HEAD
                 timerTask.cancel();
                 //timer.purge();
                 this.viewNotifier.notifyGameLost();
+=======
+>>>>>>> c3c729a (v4 Maxime)
                 revealAllBombs();
+                this.viewNotifier.notifyGameLost();
             }
         }
         else {
@@ -278,11 +282,15 @@ public class Minesweeper extends AbstractMineSweeper {
 
     public void firstRule(AbstractTile[][] world){
         Random rand = new Random(); // maak een gigantisch random nummer aan
-
-        int randNumForHeight = rand.nextInt(getHeight());
-        int randNumForWidth = rand.nextInt(getWidth());
-        world[randNumForHeight][randNumForWidth] = generateExplosiveTile();
-
+        boolean check = true;
+        while(check) {
+            int randNumForHeight = rand.nextInt(getHeight());
+            int randNumForWidth = rand.nextInt(getWidth());
+            if(!getTile(randNumForWidth, randNumForHeight).isExplosive()) {
+                world[randNumForHeight][randNumForWidth] = generateExplosiveTile();
+                check = false;
+            }
+        }
     }
 
     public void flagAllBombs(){
