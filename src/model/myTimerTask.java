@@ -14,6 +14,7 @@ public  class myTimerTask extends TimerTask
     }
     @Override
     public void run() {
-        minesweeper.viewNotifier.notifyTimeElapsedChanged(Duration.between(minesweeper.getStartTime(), LocalTime.now()));
+        minesweeper.viewNotifier.notifyTimeElapsedChanged(Duration.between(LocalTime.now(), minesweeper.getStartTime()));
+        //minesweeper.viewNotifier.notifyTimeElapsedChanged(Duration.between(minesweeper.getStartTime(), LocalTime.now()));
     }
 }
