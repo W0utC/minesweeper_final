@@ -178,7 +178,7 @@ public class MinesweeperView implements IGameStateNotifier {
 
         //Game lost message
         JOptionPane pane = new JOptionPane();
-        JOptionPane.showMessageDialog(null, "You lost you sucker", "Lost message", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "You lost you sucker", "Lost message", JOptionPane.PLAIN_MESSAGE);
         pane.setVisible(false);
         pane.setVisible(true);
     }
@@ -190,7 +190,7 @@ public class MinesweeperView implements IGameStateNotifier {
 
         //Game won message
         JOptionPane pane = new JOptionPane();
-        JOptionPane.showMessageDialog(null, "Wohoo you won, well done!!", "Game Won!!", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Wohoo you won, well done!!", "Game Won!!", JOptionPane.PLAIN_MESSAGE);
         pane.setVisible(false);
         pane.setVisible(true);
 
