@@ -57,6 +57,7 @@ public class Minesweeper extends AbstractMineSweeper {
         height = row;
         width = col;
         countOpened = 0;
+        countFlagged = 0;
         countBombs = 0;
         this.explosionCount = explosionCount;
 
@@ -65,7 +66,7 @@ public class Minesweeper extends AbstractMineSweeper {
         this.viewNotifier.notifyNewGame(row,col);
 
         //printer om te checken in terminal
-        for (int Nrow = 0; Nrow < height; Nrow++) {
+        /*for (int Nrow = 0; Nrow < height; Nrow++) {
             System.out.print('\n');
             for (int Ncol = 0; Ncol < width; Ncol++) {
                 if(playingField[Nrow][Ncol].isExplosive()){
@@ -76,7 +77,7 @@ public class Minesweeper extends AbstractMineSweeper {
             }
         }
         System.out.print("\n");
-
+        */
 
         //flagAllBombs();
 
